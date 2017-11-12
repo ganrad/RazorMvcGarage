@@ -29,6 +29,8 @@ namespace RazorMvcGarage
 
             cstring += Configuration.GetConnectionString("GarageContext");
 
+            Console.WriteLine("Connection String: " + cstring);
+            
             services.AddDbContext<RepairContext>(options =>
                 // options.UseSqlite(Configuration.GetConnectionString("GarageContext")));
                 options.UseSqlServer(cstring));
