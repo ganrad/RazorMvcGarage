@@ -1,0 +1,66 @@
+@page
+@model RazorMvcGarage.Pages.Repairs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].Vehicle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].RepairDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].RepairType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].Miles)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].Workshop)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Repair[0].Workdone)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Repair) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepairType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workshop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Workdone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
