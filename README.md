@@ -5,12 +5,12 @@ For quick reference, readers can refer to the following on-line resources as nee
 
 1.  [OpenShift Container Platform Documentation](https://docs.openshift.com/)
 2.  [Kubernetes Documentation](http://kubernetes.io/docs/user-guide/pods/)
-3.  [OpenShift CP .NET Core S2I builder Image] (https://docs.openshift.com/container-platform/3.6/using_images/s2i_images/dot_net_core.html)
-4.  [ASP.NET Core] (https://docs.microsoft.com/en-us/aspnet/core/)
-5.  [.NET Entity Framework Core] (https://docs.microsoft.com/en-us/ef/core/)
-6.  [SQL Server on Linux] (https://docs.microsoft.com/en-us/sql/linux/)
-7.  [Visual Studio Code Overview] (https://code.visualstudio.com/docs/introvideos/overview)
-8.  [Get started with VS Code and .NET Core on MacOS] (https://channel9.msdn.com/Blogs/dotnet/Get-started-with-VS-Code-using-CSharp-and-NET-Core-on-MacOS)
+3.  [OpenShift CP .NET Core S2I builder Image](https://docs.openshift.com/container-platform/3.6/using_images/s2i_images/dot_net_core.html)
+4.  [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/)
+5.  [.NET Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
+6.  [SQL Server on Linux](https://docs.microsoft.com/en-us/sql/linux/)
+7.  [Visual Studio Code Overview](https://code.visualstudio.com/docs/introvideos/overview)
+8.  [Get started with VS Code and .NET Core on MacOS](https://channel9.msdn.com/Blogs/dotnet/Get-started-with-VS-Code-using-CSharp-and-NET-Core-on-MacOS)
 
 ## Description
 The *My Garage* application is a simple MVC (Model-View-Controller) Web Application that allows users to keep track of routine maintenance and other repair work done on their vehicles.
