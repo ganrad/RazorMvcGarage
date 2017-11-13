@@ -12,7 +12,7 @@ namespace RazorMvcGarage.Pages
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = "This is a simple .NET CORE 2.0 MVC application.";
         }
     }
 }
