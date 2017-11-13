@@ -1,4 +1,5 @@
-@model PaginatedList<RazorMvcGarage.Models.Repair>
+@page
+@model RazorMvcGarage.Pages.Repairs.IndexModel
 
 @{
     ViewData["Title"] = "Repairs";
@@ -9,6 +10,7 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<!--
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
@@ -17,15 +19,15 @@
             <a asp-action="Index">Back to List</a>
         </p>
     </div>
-</form>
+</form>-->
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Vehicle</a>
+                    Vehicle<
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Repair Date</a>
+                    Repair Date
                 </th>
                 <th>
                     Repair Type
@@ -40,7 +42,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Repair) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Vehicle)
@@ -58,14 +60,15 @@
                 @Html.DisplayFor(modelItem => item.Workshop)
             </td>
             <td>
-                <a asp-page="/Repairs/Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="/Repairs/Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="/Repairs/Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<!-- 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
@@ -88,3 +91,4 @@
 <a href="#">Page #: <span class="badge">@Model.PageIndex</span></a>
 <a href="#">Total pages: <span class="badge">@Model.TotalPages</span></a>
 </div>
+-->
