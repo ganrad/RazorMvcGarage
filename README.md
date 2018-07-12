@@ -25,9 +25,9 @@ The application uses the following technologies -
 
 ### A] Create a new project in OpenShift CP using the web console.
 
-1. Login into the OpenShift CP web console/UI and create a new project.  Use 'test-asp-net-sql' for project name and 'MyGarage' for display name.  Feel free to provide any meaningful description.  View screenshot below.
+1. Login into the OpenShift CP web console/UI and create a new project.  You can use any name and description for this project.  For instance, use 'net-core2-apps' for project name and '.NET Core 2 Apps' for display name.  Feel free to provide any meaningful description.  View screenshot below.
 
-  ![alt tag](images/Create-project.png)
+  ![alt tag](images/A_1.PNG)
 
 Next, we will deploy the SQL Server container.
 
@@ -42,11 +42,11 @@ Next, we will deploy the SQL Server container.
  
 2. In the OCP web console/UI, click on 'Add to project'.  Then click on 'Deploy Image' tab.  Within this tab, click on 'Image Name' field, enter text **microsoft/mssql-server-linux** and then hit search.  Leave the 'Name' field as is.  Add the two environment variables as shown in the screenshot below.
 
-  ![alt tag](images/SQLServer-01.png)  
+  ![alt tag](images/B_2.PNG)  
 
 3. Next, click the *'Create'* button at the bottom of the web page.  This action will initiate the SQL Server container *deployment* process.  Behind the scenes, OpenShift will fetch the SQL Server docker container image from the docker registry (Docker Hub),  push the image into the integrated docker registry within OpenShift, create an image stream to associate the image with your project(/namespace) and then finally instantiate a container from this image.  This process should take approx. 3 to 5 minutes to complete.  As soon as the SQL Server container is successfully deployed, you should be able to view the container in the *Overview* tab in the left navigational panel as shown in the screenshot below.
 
-  ![alt tag](images/SQLServer-02.png)  
+  ![alt tag](images/B_3.PNG)  
 
 4. Once the SQL Server container is up and running, we will create two database entities - 
   * A **repairsdb** database which will store all information entered by users of the application.  
@@ -77,7 +77,7 @@ Next, we will deploy the SQL Server container.
    ```
    * Switch to the *repairsdb* database
    ```
-   1> USE database repairsdb;
+   1> USE repairsdb;
    2> GO
    ```
    * Grant database access to the user created above (**webuser**)
@@ -116,31 +116,34 @@ Next, we will deploy the SQL Server container.
 ### C] Deploy the My Garage application within OpenShift CP using the web console/UI.
 1.  Fork this Github repository so that it gets added to your account.
 
-2.  Login into the OpenShift CP Web Console (if you haven't already).  Click on the *'test-asp-net-sql'* project.  Then click *Add to project* at the top.  Next, under tab *Browse Catalog* search for the **'dotnetcore-11-rhel7:latest'** S2I (Source to image) builder image.  Click to select this image.
-  
-  **NOTE:** If you do not have the **'dotnetcore-11-rhel7'** image available within the OpenShift integrated docker registry, then you will need to pull this image from the [Docker Registry/Hub](https://hub.docker.com/explore/), tag it to the *'openshift'* project/namespace and then push the image into the integrated registry.  The *My Garage* application will not deploy to a **dotnet:1.0** S2I image!
-  
-  See screenshot below.
-  ![alt tag](images/Create-app-01.png)
-  
-3.  Give the application a name as **'mygarage'** and point the S2I builder image to the location of your source code.  View screen shot below.  Remember to replace the Github account name with your name (highlighted in the screenshot below).
+2.  Login into the OpenShift CP Web Console (if you haven't already).  Click on the *'net-core2-apps'* project (or the project which you created in Step [A]).  Then click *Add to project* at the top.  Next, select the *Browse Catalog* option in the dropdown menu.  Click on **'.NET Core Builder Images'**. See screenshot below.
 
-  ![alt tag](images/Create-app-02.png)
+  ![alt tag](images/C_2_1.PNG)
   
-4.  Click on the **Create** button and then go over to the *Overview* page.  To view the progress of
+  ![alt tag](images/C_2_2.PNG)
+
+Click **Next**.  Give the application a name as **'mygarage'** and point the S2I builder image to the location of your GitHub repo.  View screen shot below.  Remember to substitute the Github account name with your name (highlighted in the screenshot below).
+
+  ![alt tag](images/C_2_3.PNG)
+  
+Click on the **Create** button and then go over to the *Overview* page.  To view the progress of
  * ASP.NET application build
  * Docker container build
  
- from the OpenShift Web Console/UI, click on *Applications:Pods* in the left navigational panel, and then click on the build pod.  Select the *Terminal* tab to view the progress of the build.  Alternatively, you can also use the OpenShift CLI thru a terminal window to view the progress of the build pod.  For your reference, CLI command is shown below.
+From the OpenShift Web Console/UI, click on *Overview* item in the left navigational panel to view the status of the application and container builds.  See screenshot below.
+
+  ![alt tag](images/C_2_4.PNG)
+
+Alternatively, click on *Applications:Pods* in the left navigational panel, select the build pod and the click on the *Terminal* tab to view the progress of the build.  You can also use the OpenShift CLI thru a terminal window to view the progress of the build pod.  For your reference, CLI command to view the Pod logs is shown below.
  ```
  $ oc logs -f <pod-name>
  ```
  
-5.  Once the application container build finishes OK and the image is pushed into the integrated docker registry, OpenShift will spawn a new container instance.  You should now be able to view both the *SQL Server* database and *My Garage* application container pods running and being managed by OpenShift CP as shown in the screenshot below.
+3.  Once the application container build finishes OK and the image is pushed into the integrated docker registry, OpenShift will spawn a new container instance.  You should now be able to view both the *SQL Server* database and *My Garage* application container pods running and being managed by OpenShift CP as shown in the screenshot below.
 
-  ![alt tag](images/Create-app-03.png)
+  ![alt tag](images/C_3_1.png)
   
-6.  Next, open a terminal window and use the following OpenShift CLI commands to view the (log) output of the *My Garage* application.  You can also view this output from within the OpenShift Web Console/UI via *Applications:Pods:Pod:Terminal* view.
+4.  Next, open a terminal window and use the following OpenShift CLI commands to view the (log) output of the *My Garage* application.  You can also view this output from within the OpenShift Web Console/UI via *Applications:Pods:Pod:Terminal* view.
   
  CLI commands to view *My Garage* application container log output via a terminal window.
  * List all the running pods
@@ -152,21 +155,22 @@ Next, we will deploy the SQL Server container.
  $ oc logs -f <pod-name>
  ```
  
-7.  From the OpenShift Web Console/UI, click on the **http://mygarage...** link to access the *My Garage* application.  The home page of the *My Garage* application should render on a new browser tab.  Switch to the terminal window (from previous step) to view the application log output.  You should see a message at the top that reads **'Initialized Repair DB'**.  View screenshot below.
+5.  From the OpenShift Web Console/UI, click on the **http://mygarage...** link to access the *My Garage* application.  The home page of the *My Garage* application should render on a new browser tab.  Switch to the terminal window (from previous step) to view the application log output.  You should see a message at the top that reads **'Initialized Repair DB'**.  View screenshot below.
 
- ![alt tag](images/Create-app-04.png)
- The first time the application is accessed, it initializes the **repairsdb** with a set of maintenance records.
+  ![alt tag](images/C_5_1.PNG)
+
+The first time the application is accessed, it initializes the **repairsdb** with a set of vehicle maintenance records.  So you might experience a minor delay when the application (home page renders) is accessed for the first time.
  
-8.  A screenshot of the *My Garage* application home web page is shown below.
+6.  A screenshot of the *My Garage* application home web page is shown below.
 
-  ![alt tag](images/Create-app-05.png)
+  ![alt tag](images/C_6_1.PNG)
  
   Click on the *Repairs* tab at the top or click on the *Repairs* button under *Record vehicle maintenance* to view the maintenance records which were seeded when the application was initialized.  View screenshot below.
   
-  ![alt tag](images/Create-app-06.png)
+  ![alt tag](images/C_6_2.PNG)
  
   Feel free to play around with the application.  You can perform all CRUD operations on *Repair* records.  Enjoy!
  
-9.  Congratulations!!  You have successfully deployed a ASP.NET Core MVC 1.1 Enterprise Web Application on OpenShift Container Platform!!  The beauty of this solution is that both .NET and SQL Server runtimes are running on Red Hat Enterprise Linux (RHEL).  So go ahead and try out deploying a few .NET apps on RHEL and/or OpenShift CP.  
+7.  Congratulations!!  You have successfully deployed a ASP.NET Core MVC 2.0 Enterprise Web Application on OpenShift Container Platform!!  The beauty of this solution is that both .NET and SQL Server runtimes are running on Red Hat Enterprise Linux (RHEL).  So go ahead and try out deploying a few .NET apps on OpenShift CP running on Azure (or RHEL VMs).  
  
   
