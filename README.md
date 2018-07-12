@@ -141,7 +141,7 @@ Alternatively, click on *Applications:Pods* in the left navigational panel, sele
  
 3.  Once the application container build finishes OK and the image is pushed into the integrated docker registry, OpenShift will spawn a new container instance.  You should now be able to view both the *SQL Server* database and *My Garage* application container pods running and being managed by OpenShift CP as shown in the screenshot below.
 
-  ![alt tag](images/C_3_1.png)
+  ![alt tag](images/C_3_1.PNG)
   
 4.  Next, open a terminal window and use the following OpenShift CLI commands to view the (log) output of the *My Garage* application.  You can also view this output from within the OpenShift Web Console/UI via *Applications:Pods:Pod:Terminal* view.
   
