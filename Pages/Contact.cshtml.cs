@@ -12,7 +12,7 @@ namespace RazorMvcGarage.Pages
 
         public void OnGet()
         {
-            Message = "Red Hat Inc.,";
+            Message = "Microsoft Inc.,";
         }
     }
 }
